@@ -49,7 +49,11 @@
 					</ul>
 				</div>
 				<div class="col-md-3 qna-write">
+					<c:choose>
+					<c:when test="${not empty sessionScope.user}">
 					<a href="/qna/form" class="btn btn-primary pull-right" role="button">질문하기</a>
+        			</c:when>
+        			</c:choose>
 				</div>
 			</div>
 		</div>

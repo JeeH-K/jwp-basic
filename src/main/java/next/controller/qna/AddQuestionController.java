@@ -10,6 +10,7 @@ import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
 import next.dao.QuestionDao;
 import next.model.Question;
+import next.model.User;
 
 public class AddQuestionController extends AbstractController {
 	private static final Logger log = LoggerFactory.getLogger(AddAnswerController.class);
@@ -18,7 +19,8 @@ public class AddQuestionController extends AbstractController {
 	
 	@Override
 	public ModelAndView execute(HttpServletRequest req, HttpServletResponse response) throws Exception {
-		Question question = new Question(req.getParameter("writer"), 
+		User user = (User)req.getSession().getAttribute("user");
+		Question question = new Question(user.getUserId(), 
 				req.getParameter("title"),
 				req.getParameter("contents"));
 		log.debug("answer : {}", question);

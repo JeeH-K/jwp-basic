@@ -94,7 +94,7 @@
 									<textarea name="contents" id="contents" class="form-control" placeholder=""></textarea>
 								</div>
 								<input class="btn btn-success pull-right" type="submit" value="답변하기" />
-								<div class="clearfix" />
+								<div class="clearfix"></div>
 							</form>
 							</div>
 						</div>
@@ -104,6 +104,11 @@
 		</div>
 	</div>
 </div>
+
+
+<script type="text/template" id="countOfCommentTemplate">
+	<strong>{0}</strong>개의 의견
+</script>
 
 <script type="text/template" id="answerTemplate">
 	<article class="article">

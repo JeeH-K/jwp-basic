@@ -15,6 +15,23 @@ import core.jdbc.RowMapper;
 
 public class QuestionDao {
 	
+	public Question updateCountOfAnswers (long questionId){
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        String sql = "UPDATE QUESTIONS SET countOfAnswer=countOfAnswer+1 WHERE questionId = ?";
+        PreparedStatementCreator psc = new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, String.valueOf(questionId) );
+				return pstmt;
+			}
+		};
+        
+		KeyHolder keyHolder = new KeyHolder();
+        jdbcTemplate.update(psc, keyHolder);
+        return findById(keyHolder.getId());
+	}
+	
 	public Question insert(Question question) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         String sql = "INSERT INTO QUESTIONS (writer, title, contents, createdDate) VALUES (?, ?, ?, ?)";
